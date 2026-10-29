@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autospan-ble"
+version = "0.1.0"
+description = "BLE reference plugin for AutoSpan with supervised endpoints and passive capture"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Nidhal Abidi"}]
+keywords = ["autospan", "testing", "hardware", "ble", "bluetooth", "pytest", "automation"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = [
+  "autospan>=1.0.0,<2.0.0",
+  "pyserial>=3.5,<4",
+  "structwire>=1.0.0,<2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nidops/autospan-ble"
+Documentation = "https://github.com/nidops/autospan-ble/blob/master/docs/API.md"
+Source = "https://github.com/nidops/autospan-ble"
+Issues = "https://github.com/nidops/autospan-ble/issues"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-html>=4,<5", "autospan[tui]>=1.0.0,<2.0.0"]
+dev = [
+  "pytest>=8,<10",
+  "pytest-html>=4,<5",
+  "autospan[tui]>=1.0.0,<2.0.0",
+  "PyYAML>=6",
+  "pre-commit==4.3.0",
+  "ruff==0.13.3",
+  "mypy>=1.13",
+  "types-pyserial",
+  "build>=1.2",
+  "twine>=6.2,<8",
+  "readme-renderer[md]>=44",
+]
+
+[project.entry-points."autospan.plugins"]
+ble = "autospan_ble.plugin:PLUGIN"
+
+[project.scripts]
+autospan-ble-inventory = "autospan_ble.inventory:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["autospan_ble*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+autospan_ble = ["py.typed", "bleuio/common-codecs.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers --html=artifacts/report.html --self-contained-html"
+markers = [
+  "unit: software tests for autospan-ble; no physical devices",
+  "hardware: requires physical hardware access",
+  "destructive: requires explicit maintenance authorization",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true

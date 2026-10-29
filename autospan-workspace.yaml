@@ -1,0 +1,12 @@
+schema: 1
+tests: [tests/unit]
+console:
+  config: autospan.fake.yaml
+profiles:
+  fake:
+    console: {config: autospan.fake.yaml}
+  lab:
+    hardware: true
+    scenario_packages: [tests]
+    plugins: [ble, ble-acceptance]
+    console: {config: bench.local.yaml}

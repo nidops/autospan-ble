@@ -1,0 +1,23 @@
+autospan:
+  plugins:
+  - ble
+ble:
+  devices:
+    scanner:
+      backend: fake
+      selector:
+        serial_number: FAKE-SCANNER
+      fake_scan_results:
+      - addr: '[0]12:34:56:78:9A:BC'
+        rssi: -48
+      - addr: '[1]AA:BB:CC:DD:EE:FF'
+        rssi: -73
+      fake_address: 12:34:56:78:9A:01
+    peripheral:
+      backend: fake
+      selector:
+        serial_number: FAKE-PERIPHERAL
+      fake_address: 12:34:56:78:9A:BC
+      fake_scan_results:
+      - addr: '[0]12:34:56:78:9A:01'
+        rssi: -45

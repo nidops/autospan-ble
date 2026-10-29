@@ -1,0 +1,38 @@
+autospan:
+  plugins:
+    - ble
+
+ble:
+  # Required only by the known-advertiser RF check; ordinary capture is opaque.
+  capture_decoder_command: [tshark]
+  devices:
+    scanner:
+      backend: pyserial
+      selector:
+        vid: 0x2DCF
+        product_ids: [0x6002]
+        serial_number: REPLACE_BLEUIO_SCANNER_SERIAL
+      baud: 57600
+      reset_timeout_s: 25
+
+    peripheral:
+      backend: pyserial
+      selector:
+        vid: 0x2DCF
+        product_ids: [0x6002]
+        serial_number: REPLACE_BLEUIO_PERIPHERAL_SERIAL
+      baud: 57600
+      reset_timeout_s: 25
+
+  observers:
+    air:
+      backend: nrf-sniffer
+      selector:
+        vid: 0x1915
+        product_ids: [0x522A]
+        serial_number: REPLACE_RAYTAC_SNIFFER_SERIAL
+      # POSIX extcap wrapper from Nordic; it must discover a responding sniffer.
+      # Supply an executable plus arguments; this is not a shell command.
+      extcap_command: [nrf_sniffer_ble.sh]
+      startup_timeout_s: 8
+      stop_timeout_s: 3

@@ -1,0 +1,10 @@
+include autospan.yaml autospan.fake.yaml autospan.raytac.yaml autospan.sniffer-setup.yaml CONTRIBUTING.md
+include autospan-workspace.yaml SECURITY.md
+recursive-include docs *.md
+recursive-include tests *.py *.toml
+recursive-include src/autospan_ble/bleuio *.yaml
+recursive-include scripts *.py
+global-exclude __pycache__ *.py[cod] *.local.yaml *.local.yml
+prune artifacts
+prune .github
+prune tests/build

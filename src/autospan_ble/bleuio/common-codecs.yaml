@@ -1,0 +1,42 @@
+# Bluetooth CSS v14 data types. Protocol routing stays in autospan-ble.
+version: 1
+codecs:
+  ad_header:
+    size: 2
+    fields:
+      - {name: length, type: u8}
+      - {name: ad_type, type: u8}
+  company_id:
+    size: 2
+    fields:
+      - {name: company_id, type: u16le}
+  advertising_flags:
+    description: First Flags octet; later octets remain available as raw AD data.
+    size: 1
+    fields:
+      - {name: le_limited_discoverable, type: bool, offset: 0, mask: 0x01}
+      - {name: le_general_discoverable, type: bool, offset: 0, mask: 0x02, shift: 1}
+      - {name: br_edr_not_supported, type: bool, offset: 0, mask: 0x04, shift: 2}
+      - {name: simultaneous_le_br_edr_controller, type: bool, offset: 0, mask: 0x08, shift: 3}
+      - {name: unassigned_bits, type: u8, offset: 0, mask: 0xF0, shift: 4}
+  tx_power:
+    size: 1
+    fields:
+      - {name: tx_power_dbm, type: i8, unit: dBm}
+  uuid16:
+    size: 2
+    fields:
+      - {name: uuid, type: u16le}
+  uuid32:
+    size: 4
+    fields:
+      - {name: uuid, type: u32le}
+  uuid128:
+    size: 16
+    fields:
+      - {name: uuid, type: bytes, length: 16}
+  bleuio_device_name:
+    description: Qualified BleuIO Standard built-in six-byte Device Name, not arbitrary GATT text.
+    size: 6
+    fields:
+      - {name: name, type: ascii, length: 6}

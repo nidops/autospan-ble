@@ -1,0 +1,19 @@
+autospan:
+  plugins: [ble]
+
+# Maintenance is separate from a bench that owns active endpoints/observers.
+# Copy to sniffer-setup.local.yaml and fill in your USB location and tool paths.
+ble:
+  sniffer_setup:
+    name: air
+    selector:
+      vid: 0x1915
+      product_ids: [0x521A, 0x521F, 0x522A]
+      location: REPLACE_USB_LOCATION
+    firmware: REPLACE_PATH_TO_OFFICIAL_APPLICATION_DFU_ZIP
+    firmware_sha256: REPLACE_VERIFIED_SHA256
+    nrfutil_command: [nrfutil]
+    extcap_command: [nrf_sniffer_ble.sh]
+    expected_version: '4.1.1'
+    timeout_s: 120
+    startup_timeout_s: 8

@@ -1,0 +1,23 @@
+autospan:
+  plugins:
+    - ble
+
+ble:
+  devices:
+    black:
+      backend: pyserial
+      selector:
+        vid: 0x2DCF
+        product_ids: [0x6002]
+        serial_number: REPLACE_BLACK_SERIAL
+      baud: 57600
+      reset_timeout_s: 25
+
+    white:
+      backend: pyserial
+      selector:
+        vid: 0x2DCF
+        product_ids: [0x6002]
+        serial_number: REPLACE_WHITE_SERIAL
+      baud: 57600
+      reset_timeout_s: 25

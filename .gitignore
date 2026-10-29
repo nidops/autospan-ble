@@ -1,0 +1,32 @@
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.venv*/
+venv/
+.env
+.env.*
+!.env.example
+
+# Package output
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test and analysis output
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Local runs and bench configuration
+/artifacts/
+*.local.yaml
+*.local.yml

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autospan-ble-acceptance"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["autospan-ble[test]>=0.1,<0.2"]
+
+[project.entry-points."autospan.plugins"]
+ble-acceptance = "autospan_ble_acceptance:PLUGIN"
+
+[tool.setuptools]
+packages = ["autospan_ble_acceptance"]
+
+[tool.setuptools.package-dir]
+autospan_ble_acceptance = "hardware"
